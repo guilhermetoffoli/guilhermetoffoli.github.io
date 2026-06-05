@@ -2,8 +2,15 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>UFU App</title>
+
+<!-- ===== TAGS PARA TRANSFORMAR EM APP NO IOS (PWA) ===== -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="UFU App">
+<link rel="apple-touch-icon" href="logoUfuPagInicial.png">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,6 +33,7 @@
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
+    overscroll-behavior-y: none;
   }
 
   .phone-frame {
@@ -170,6 +178,8 @@
     padding: 20px 20px 40px;
     border-bottom-right-radius: 80px; 
     position: relative;
+    /* Adicionando margem na direita para criar a faixa branca vertical */
+    margin-right: 20px;
   }
   .id-header-blue img {
     max-width: 90%;
@@ -179,8 +189,8 @@
 
   .id-profile-white {
     background: #ffffff;
-    /* Ajustado para exatos 160px para encostar perfeitamente na borda direita do círculo */
-    padding: 20px 20px 20px 160px;
+    /* Ajustado para 164px na esquerda (foto) e adicionado 20px na direita para alinhar com a faixa */
+    padding: 20px 20px 20px 164px; 
     position: relative;
     min-height: 140px;
     display: flex;
@@ -210,7 +220,6 @@
     align-items: center;
     justify-content: center;
     z-index: 5;
-    /* Removida a sombra para mesclar perfeitamente com o fundo branco */
   }
   .photo-ring {
     width: 100%;
@@ -230,13 +239,22 @@
 
   .profile-text-wrapper {
     position: relative;
-    padding: 12px 0 12px 8px; /* O padding à esquerda dá respiro do círculo pro texto */
+    padding: 12px 0 12px 6px;
     width: 100%;
     z-index: 2;
-    /* As linhas agora são bordas diretas no contêiner, o que as impede de atravessar a foto */
-    border-top: 3px solid var(--ufu-brand-blue);
-    border-bottom: 3px solid var(--ufu-brand-blue);
   }
+
+  .profile-text-wrapper::before,
+  .profile-text-wrapper::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--ufu-brand-blue);
+  }
+  .profile-text-wrapper::before { top: 0; }
+  .profile-text-wrapper::after { bottom: 0; }
 
   .profile-name {
     font-size: 16px;
@@ -262,6 +280,8 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    /* Margem direita acompanhando a do header, criando a faixa vertical na tela toda */
+    margin-right: 20px; 
   }
   .id-field { margin-bottom: 14px; }
   .id-field label {
@@ -303,17 +323,17 @@
 
   .qr-corner-btn {
     position: absolute;
-    bottom: 0;
+    bottom: 20px;
     right: 0;
-    width: 60px; height: 60px;
+    width: 52px; height: 52px;
     background: white;
-    border-radius: 20px 0 0 0;
+    border-radius: 12px;
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: -2px -2px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   }
 
   /* ===== QR MODAL ===== */
