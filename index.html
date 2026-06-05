@@ -103,7 +103,6 @@
   .class-faltas { background: #fff9e0; color: #8a6700; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 4px; border: 1px solid #f5d200; }
   .see-more { text-align: right; margin-top: 6px; font-size: 13px; color: var(--ufu-blue); font-weight: 600; cursor: pointer; }
 
-  /* Estilo para quando não há aulas */
   .empty-state {
     text-align: center;
     padding: 30px 16px;
@@ -166,7 +165,6 @@
     justify-content: center;
   }
 
-  /* Header com logo */
   .id-header-blue {
     background: var(--ufu-brand-blue);
     padding: 20px 20px 40px;
@@ -179,7 +177,6 @@
     display: block;
   }
 
-  /* Faixa branca centralizada */
   .id-profile-white {
     background: #ffffff;
     padding: 20px 20px 20px 170px;
@@ -212,7 +209,6 @@
     align-items: center;
     justify-content: center;
     z-index: 5;
-    cursor: pointer;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
   }
   .photo-ring {
@@ -230,22 +226,6 @@
     border-radius: 50%;
     object-fit: cover;
   }
-  .photo-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,0.45);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 10px;
-    font-weight: 600;
-    opacity: 0;
-    transition: opacity 0.2s;
-    border-radius: 50%;
-  }
-  .photo-container:hover .photo-overlay { opacity: 1; }
 
   .profile-text-wrapper {
     position: relative;
@@ -279,7 +259,6 @@
     font-weight: 900;
     color: #000;
     margin-bottom: 4px;
-    cursor: pointer;
     text-transform: uppercase;
     line-height: 1.1;
   }
@@ -287,7 +266,6 @@
     font-size: 11px;
     font-weight: 500;
     color: #000;
-    cursor: pointer;
     text-transform: uppercase;
     line-height: 1.3;
   }
@@ -312,7 +290,6 @@
     color: white;
     font-size: 16px;
     font-weight: 700;
-    cursor: pointer;
   }
   .id-field .filiacao-container .field-value {
     display: inline-block;
@@ -328,7 +305,6 @@
     border-radius: 8px;
     padding: 6px 20px;
     display: inline-block;
-    cursor: pointer;
   }
   .validity-box .val-label {
     color: #000;
@@ -355,23 +331,6 @@
     cursor: pointer;
     box-shadow: -2px -2px 10px rgba(0,0,0,0.1);
   }
-
-  [contenteditable="true"] {
-    outline: none;
-    border-bottom: 2px solid #fff !important;
-    background: rgba(255,255,255,0.2);
-    color: inherit;
-    padding: 2px 4px;
-    border-radius: 4px 4px 0 0;
-    display: inline-block;
-    min-width: 30px;
-  }
-  .profile-text-wrapper [contenteditable="true"] {
-      border-bottom: 2px solid var(--ufu-brand-blue) !important;
-      background: rgba(0,0,0,0.05);
-  }
-
-  #photo-input { display: none; }
 
   /* ===== QR MODAL ===== */
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
@@ -492,57 +451,51 @@
     <div class="id-profile-white">
       <div class="blue-filler"></div>
 
-      <div class="photo-container" onclick="document.getElementById('photo-input').click()">
+      <div class="photo-container">
         <div class="photo-ring">
-          <img id="profile-photo" src="" alt="Foto" onerror="this.style.display='none'" style="display:none">
-          <svg id="photo-placeholder" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%);"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-          <div class="photo-overlay">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
-            Trocar
-          </div>
+          <img id="profile-photo" src="fotoPerfil.jpeg" alt="Foto">
         </div>
       </div>
-      <input type="file" id="photo-input" accept="image/*" onchange="updatePhoto(event)">
 
       <div class="profile-text-wrapper">
-        <div class="profile-name" id="field-name" contenteditable="false" onclick="toggleEdit(this)">GUILHERME DUARTE TOFFOLI</div>
-        <div class="profile-course" id="field-course" contenteditable="false" onclick="toggleEdit(this)">GRADUAÇÃO EM CIÊNCIA DA COMPUTAÇÃO: BACHARELADO - INTEGRAL</div>
+        <div class="profile-name" id="field-name">GUILHERME DUARTE TOFFOLI</div>
+        <div class="profile-course" id="field-course">GRADUAÇÃO EM CIÊNCIA DA COMPUTAÇÃO: BACHARELADO - INTEGRAL</div>
       </div>
     </div>
 
     <div class="id-details-blue">
       <div class="id-field">
         <label>Matrícula:</label>
-        <div class="field-value" id="field-matricula" contenteditable="false" onclick="toggleEdit(this)">12021BCC011</div>
+        <div class="field-value" id="field-matricula">12021BCC011</div>
       </div>
       <div class="id-field">
         <label>CPF:</label>
-        <div class="field-value" id="field-cpf" contenteditable="false" onclick="toggleEdit(this)">018.595.826-56</div>
+        <div class="field-value" id="field-cpf">018.595.826-56</div>
       </div>
       <div class="id-field">
         <label>Data de Nascimento:</label>
-        <div class="field-value" id="field-nasc" contenteditable="false" onclick="toggleEdit(this)">02/03/2002</div>
+        <div class="field-value" id="field-nasc">02/03/2002</div>
       </div>
       <div class="id-field">
         <label>Naturalidade:</label>
-        <div class="field-value" id="field-naturalidade" contenteditable="false" onclick="toggleEdit(this)">Anápolis/GO</div>
+        <div class="field-value" id="field-naturalidade">Anápolis/GO</div>
       </div>
       <div class="id-field">
         <label>Filiação:</label>
         <div class="filiacao-container">
-          <div class="field-value" id="field-pai" contenteditable="false" onclick="toggleEdit(this)">Mateus Arantes Toffoli</div><br>
-          <div class="field-value" id="field-mae" contenteditable="false" onclick="toggleEdit(this)">Edna Marcia Duarte Toffoli</div>
+          <div class="field-value" id="field-pai">Mateus Arantes Toffoli</div><br>
+          <div class="field-value" id="field-mae">Edna Marcia Duarte Toffoli</div>
         </div>
       </div>
       <div class="id-field">
         <label>Data da Matrícula:</label>
-        <div class="field-value" id="field-data-matricula" contenteditable="false" onclick="toggleEdit(this)">28/07/2021</div>
+        <div class="field-value" id="field-data-matricula">28/07/2021</div>
       </div>
 
       <div class="validity-container">
-        <div class="validity-box" onclick="toggleEdit(document.getElementById('field-validade'))">
+        <div class="validity-box">
           <div class="val-label">Validade:</div>
-          <div class="val-date" id="field-validade" contenteditable="false" onclick="event.stopPropagation(); toggleEdit(this)">30/06/2026</div>
+          <div class="val-date" id="field-validade">30/06/2026</div>
         </div>
       </div>
 
@@ -583,58 +536,6 @@
     window.scrollTo(0, 0);
   }
 
-  function toggleEdit(el) {
-    if (!el) return;
-    const isEditing = el.getAttribute('contenteditable') === 'true';
-    if (isEditing) {
-      el.setAttribute('contenteditable', 'false');
-    } else {
-      document.querySelectorAll('[contenteditable="true"]').forEach(e => {
-        e.setAttribute('contenteditable', 'false');
-      });
-      el.setAttribute('contenteditable', 'true');
-      el.focus();
-      const range = document.createRange();
-      const sel = window.getSelection();
-      range.selectNodeContents(el);
-      range.collapse(false);
-      sel.removeAllRanges();
-      sel.addRange(range);
-    }
-  }
-
-  document.addEventListener('click', function(e) {
-    if (!e.target.hasAttribute('contenteditable') && e.target.getAttribute('contenteditable') !== 'true') {
-      document.querySelectorAll('[contenteditable="true"]').forEach(el => {
-        el.setAttribute('contenteditable', 'false');
-      });
-    }
-  });
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-      const active = document.querySelector('[contenteditable="true"]');
-      if (active) {
-        e.preventDefault();
-        active.setAttribute('contenteditable', 'false');
-      }
-    }
-  });
-
-  function updatePhoto(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      const img = document.getElementById('profile-photo');
-      const placeholder = document.getElementById('photo-placeholder');
-      img.src = e.target.result;
-      img.style.display = 'block';
-      if (placeholder) placeholder.style.display = 'none';
-    };
-    reader.readAsDataURL(file);
-  }
-
   let qrGenerated = false;
   function openQR() {
     const modal = document.getElementById('qr-modal');
@@ -660,12 +561,6 @@
       document.getElementById('qr-modal').classList.remove('active');
     }
   }
-
-  document.addEventListener('input', function(e) {
-    if (e.target.id === 'field-matricula' || e.target.id === 'field-name') {
-      qrGenerated = false;
-    }
-  });
 </script>
 </body>
 </html>
